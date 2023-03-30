@@ -39,7 +39,7 @@ ul {
 }
 
 .nav_container {
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
     display: inline-block;
     /* display: flex; */
     align-content: center;
