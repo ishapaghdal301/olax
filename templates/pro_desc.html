@@ -1,0 +1,96 @@
+{% include "header.html" %}
+{% load cart %}
+{% load custom_filter %}
+        <link rel="stylesheet" href="/static/css/pro_desc.css">
+
+        <div class="product-desc">
+            <div class="container">
+                <div class="single-product">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="product-image">
+                                <div class="product-image-main">
+                                    <img src="{{product.image.url}}" alt="" id="product-main-image">
+                                </div>
+                                {% comment %} <div class="product-image-slider">
+                                    <img src="{{product.image.url}}" alt=""  class="image-list">
+                                    <img src="{{product.image.url}}" alt=""  class="image-list">
+                                    <img src="{{product.image.url}}" alt=""  class="image-list">
+                                    <img src="{{product.imagde.url}}" alt=""  class="image-list">
+                                </div> {% endcomment %}
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            
+                            <div class="card-footer p-0 no-gutters">
+                                {% if product|is_in_cart:request.session.cart %}
+                                <div class="row no-gutters">
+                                    <form action="/product_quantity#{{product.id}}" class="col-2 " method="post">
+                                     {% csrf_token %}
+                                        <input hidden type="text" name='product' value='{{product.id}}'>
+                                        <input hidden type="text" name='remove' value='True'>
+                                        <input type="submit" value="-" class="btn btn-block btn-dark border-right">
+                                    </form>
+                                    <div class="text-center col btn btn-dark">{{product|cart_quantity:request.session.cart}} in Cart</div>
+                                    <form action="/product_quantity#{{product.id}}" class="col-2 " method="post">
+                                        {% csrf_token %}
+                                        <input hidden type="text" name='product' value='{{product.id}}'>
+                                        <input type="submit" value="+" class="btn btn-block btn-dark border-left">
+                                    </form>
+                                </div>
+                                {% else %}
+                                <form action="/product_quantity#{{product.id}}" method="POST" class="btn-block">
+                                    {% csrf_token %}
+                                    <input hidden type="text" name='product' value='{{product.id}}'>
+                                    <input type="submit" class="float-right btn btn-dark form-control"
+                                        value="Add To Cart">
+                                </form>
+                                {% endif %}
+        
+                            </div>
+
+                            <div class="product">
+                                <div class="product-title">
+                                    <h2>{{product.name}}</h2>
+                                </div>
+                                {% comment %} <div class="product-rating">
+                                    <span><i class="bx bxs-star"></i></span>
+                                    <span><i class="bx bxs-star"></i></span>
+                                    <span><i class="bx bxs-star"></i></span>
+                                    <span><i class="bx bxs-star"></i></span>
+                                    <span><i class="bx bxs-star"></i></span>
+                                    <span class="review">(47 Review)</span>
+                                </div> {% endcomment %}
+                                
+        
+                                <div class="product-details">
+                                    <h3>Description</h3>
+                                    <p>{{product.description}}</p>
+                                </div>
+                                
+                                <span class="divider"></span>
+        
+                                <div class="product-btn-group">
+                                    <img style="height: 60px;" class="rounded-circle" src="{{customer.upload.url}}" alt="">
+                                    <a class="button buy-now"target="_blank"href="https://wa.me/+91{{product.customer.phone}}?text=I'm%20interested%20in%20your%20chat%20with%20saler">
+                                        Chat with seller
+                                    </a></center>
+                                    {% comment %} <div class="button buy-now"><i class='bx bxs-zap' ></i> Buy Now</div>
+                                    <div class="button add-cart"><i class='bx bxs-cart' ></i> Add to Cart</div>
+                                    <div class="button heart"><i class='bx bxs-heart' ></i> Add to Wishlist</div> {% endcomment %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <br>
+        <br>
+        
+            <!--script-->
+            <script src="/static/js/product_desc.js"></script>
+</body>
+
+</html>

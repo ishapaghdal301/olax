@@ -1,0 +1,83 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta property="og:image" content="//image.prntscr.com/image/93970e70e1f045e1aff76e05469008d8.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/navbar.css"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    {% comment %} <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" type="text/css"> {% endcomment %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+</head>
+    <title>Home</title>
+</head>
+<body>
+    <style>
+        .header .first_header h1{
+            display: inline-block;
+            padding: 10px;
+        }
+        .nav_container{
+            display: inline-block;
+            
+        }
+    </style>
+    <div class="header">
+        <div class="first_header">
+            <h1>
+                OLAX
+            </h1>
+
+            <div class="nav_container">
+                        <ul>
+                            <div class="dropdown">
+                                <a href="/">
+                                <button class="dropbtn">Home</button></a>
+                            </div>
+                            {% for category in categories %}
+                            <div class="dropdown">
+                            <a href="/?category={{category.id}}">
+                            <button class="dropbtn">{{category.name}}</button></a>
+                            </div>
+                            {% endfor %}
+                            <div class="dropdown">
+                                <a href="/sell">
+                                <button class="dropbtn" >SELL</button></a>
+                            </div>
+                            
+    
+                        </ul>
+                    {% comment %} </div>
+                </div> {% endcomment %}
+            </div>
+            <style>
+                .profile img{
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                }
+            </style>
+            {% if request.session.customer %}
+            <div class="profile">
+                <a href="/updateprofile">
+                    <img style="height: 60px;" class="rounded-circle" src="{{customer.upload.url}}" alt="">
+                {% comment %} <button class="dropbtn" >Update Your Profile</button></a> {% endcomment %}
+            </div>
+            {% endif %}
+            
+        </div>
+    </div>
+
+        <div class="random_container">
+            <a href="/cart" class="logout_cart_button">   View Cart</a>
+            {% comment %} <a href="/updateprofile" class="logout_cart_button"> Update Your Profile</a> {% endcomment %}
+            <a href="/sellproductlist" class="logout_cart_button"> Sell products list</a>
+            {% if request.session.customer %}
+            
+              <a class="logout_cart_button" href="/orders">Orders</a>
+              <a class="logout_cart_button" href="/logout">Logout</a>
+            {% else %}
+                <a class="logout_cart_button" href="/login">Login</a>
+            {% endif %}
+        </div>

@@ -1,0 +1,30 @@
+
+{% include "header.html" %}
+
+{% load cart %}
+{% load custom_filter %}
+
+
+
+<link rel="stylesheet" href="/static/css/photo_grid.css">
+
+<div id='products' class="col-lg-12 mx-auto">
+  <div class="row mx-auto">
+    {% for product in products %}
+				<div class="card mx-auto mb-4" id={{product.id}} style="width: 15rem;">
+					<a href="pro_desc?product_id={{product.id}}">
+						<img class="card-img-top" src="{{product.image.url}}" alt="Card image cap">
+					</a>
+					
+					<div class="card-body">
+						<p class="card-title">{{product.name}}</p>
+						<p class="card-text"><b>{{product.price|currency}}</b></p>
+					</div>
+
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+   
+</body>
+</html>

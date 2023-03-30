@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Design by foolishdeveloper.com -->
+    <title>Glassmorphism login Form Tutorial in html css</title>
+ 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/signup.css">
+</head>
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <form method = "POST" action="/signup">
+        {% csrf_token %}
+        <h3>SignUp Here</h3>
+        {{error}}
+
+        <label for="">First Name</label>
+        <input type="text" placeholder="Firstname" name="firstname" id="username">
+
+        <label for="">Last Name</label>
+        <input type="text" placeholder="Lastname" name="lastname" id="username">
+
+        <label for="">Email</label>
+        <input type="text" placeholder="Lastname" name="email" id="username">
+
+        <label for="">Username</label>
+        <input type="text" placeholder="Email or Phone" name="username" id="username">
+
+        <label for="password">Password</label>
+        <input type="password" placeholder="Password" name="pass1" id="password">
+
+        <label for="password">Password</label>
+        <input type="password" placeholder="Enter Password again" name="pass2" id="password">
+
+        <button>Sign Up</button><br><br>
+        Alredy have an account? <a href="/login">Login Here </a>
+    </form>
+</body>
+</html>

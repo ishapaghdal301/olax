@@ -1,0 +1,59 @@
+{% include "header.html" %}
+ <div class="container">
+    <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12 edit_information">
+        <form action="/sell"  method="POST" enctype="multipart/form-data">	
+            {% csrf_token %}
+            <h3 class="text-center">Sell product</h3>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        
+                        <label class="profile_details_text">Product Image:</label>
+                        <input type="file" id="myFile" class="form-control" name="image">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label class="profile_details_text">Product name</label>
+                        <input type="text" name="name" class="form-control" value="" required >
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label class="profile_details_text">Price </label>
+                        <input type="number" name="price" class="form-control" value="" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <label class="profile_details_text">Category:</label>
+                        <select name="category" class="form-control" value="{{customer.gender}}" required>
+                            {% for category in categories  %}
+                            <option value="{{category.id}}">{{category.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <label class="profile_details_text">Description</label>
+                        <input type="text" name="description" class="form-control" value="" required >
+                    </div>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 submit">
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-dark" value="Submit">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
